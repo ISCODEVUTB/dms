@@ -1,5 +1,6 @@
-from pdocument import PDocument
+from logic.classes.pdocument import PDocument
 from datetime import date
+
 
 class Book(PDocument):
     """
@@ -58,7 +59,7 @@ class Book(PDocument):
         :rtype: str
         """
         return self.__editor
-    
+
     @editor.setter
     def editor(self, editor: str) -> None:
         """
@@ -77,7 +78,7 @@ class Book(PDocument):
         :rtype: int
         """
         return self.__pages
-    
+
     @pages.setter
     def pages(self, pages: int) -> None:
         """
@@ -96,7 +97,7 @@ class Book(PDocument):
         :rtype: str
         """
         return self.__synopsis
-    
+
     @synopsis.setter
     def synopsis(self, synopsis: str) -> None:
         """
@@ -115,7 +116,7 @@ class Book(PDocument):
         :rtype: str
         """
         return self.__presentation
-    
+
     @presentation.setter
     def presentation(self, presentation: str) -> None:
         """
@@ -168,8 +169,10 @@ class Book(PDocument):
                 self.presentation == other.presentation
         return False
 
+
 if __name__ == "__main__":
-    book = Book(1, 'author', 'title', 0.1, 'topic', 'lang', date.today(), 'publisher', 'editor', 1, 'synopsis', 'presentation')
+    book = Book(1, 'author', 'title', 0.1, 'topic', 'lang', date.today(),
+                'publisher', 'editor', 1, 'synopsis', 'presentation')
     assert book.id == 1
     assert book.author == 'author'
     assert book.title == 'title'
@@ -185,6 +188,7 @@ if __name__ == "__main__":
 
     print(book.__str__())
 
-    book2 = Book(1, 'author', 'title', 0.1, 'topic', 'lang', date.today(), 'publisher', 'editor', 1, 'synopsis', 'presentation')
+    book2 = Book(1, 'author', 'title', 0.1, 'topic', 'lang', date.today(
+    ), 'publisher', 'editor', 1, 'synopsis', 'presentation')
 
     print("book == book2") if book == book2 else print("book != book2")

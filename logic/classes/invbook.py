@@ -1,10 +1,12 @@
-from edocument import EDocument
+from logic.classes.edocument import EDocument
 from datetime import date
+
 
 class InvBook(EDocument):
     """
     A class that represents an investigation book
     """
+
     def __init__(self,
                  id: int = 0,
                  author: str = 'author',
@@ -54,7 +56,7 @@ class InvBook(EDocument):
         :rtype: int
         """
         return self.__pages
-    
+
     @pages.setter
     def pages(self, pages: int):
         """
@@ -63,7 +65,7 @@ class InvBook(EDocument):
         :type pages: int
         """
         self.__pages = pages
-    
+
     @property
     def abstract(self) -> str:
         """
@@ -72,7 +74,7 @@ class InvBook(EDocument):
         :rtype: str
         """
         return self.__abstract
-    
+
     @abstract.setter
     def abstract(self, abstract: str):
         """
@@ -99,7 +101,7 @@ class InvBook(EDocument):
                 "doi": self.doi,
                 "pages": self.pages,
                 "abstract": self.abstract}
-    
+
     def __eq__(self, other: object) -> bool:
         """
         Equality operator
@@ -110,20 +112,22 @@ class InvBook(EDocument):
         """
         if isinstance(other, InvBook):
             return self.id == other.id and \
-                   self.author == other.author and \
-                   self.title == other.title and \
-                   self.price == other.price and \
-                   self.topic == other.topic and \
-                   self.language == other.language and \
-                   self.pub_date == other.pub_date and \
-                   self.size == other.size and \
-                   self.doi == other.doi and \
-                   self.pages == other.pages and \
-                   self.abstract == other.abstract
+                self.author == other.author and \
+                self.title == other.title and \
+                self.price == other.price and \
+                self.topic == other.topic and \
+                self.language == other.language and \
+                self.pub_date == other.pub_date and \
+                self.size == other.size and \
+                self.doi == other.doi and \
+                self.pages == other.pages and \
+                self.abstract == other.abstract
         return False
 
+
 if __name__ == "__main__":
-    invbook = InvBook(1, 'author', 'title', 0.1, 'topic', 'lang', date.today(), 0.1, 'doi', 1, 'abstract')
+    invbook = InvBook(1, 'author', 'title', 0.1, 'topic',
+                      'lang', date.today(), 0.1, 'doi', 1, 'abstract')
     assert invbook.id == 1
     assert invbook.author == 'author'
     assert invbook.title == 'title'
@@ -138,6 +142,8 @@ if __name__ == "__main__":
 
     print(invbook.__str__())
 
-    invbook2 = InvBook(1, 'author', 'title', 0.1, 'topic', 'lang', date.today(), 0.1, 'doi', 1, 'abstract')
+    invbook2 = InvBook(1, 'author', 'title', 0.1, 'topic',
+                       'lang', date.today(), 0.1, 'doi', 1, 'abstract')
 
-    print("invbook == invbook2") if invbook == invbook2 else print("invbook != invbook2")
+    print("invbook == invbook2") if invbook == invbook2 else print(
+        "invbook != invbook2")

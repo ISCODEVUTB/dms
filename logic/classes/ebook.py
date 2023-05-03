@@ -1,10 +1,12 @@
-from edocument import EDocument
+from logic.classes.edocument import EDocument
 from datetime import date
+
 
 class Ebook(EDocument):
     """
     A class that represents an ebook
     """
+
     def __init__(self,
                  id: int = 0,
                  author: str = 'author',
@@ -58,7 +60,7 @@ class Ebook(EDocument):
         :rtype: str
         """
         return self.__editor
-    
+
     @editor.setter
     def editor(self, editor: str) -> None:
         """
@@ -76,7 +78,7 @@ class Ebook(EDocument):
         :rtype: int
         """
         return self.__pages
-    
+
     @pages.setter
     def pages(self, pages: int) -> None:
         """
@@ -94,7 +96,7 @@ class Ebook(EDocument):
         :rtype: str
         """
         return self.__synopsis
-    
+
     @synopsis.setter
     def synopsis(self, synopsis: str) -> None:
         """
@@ -133,21 +135,23 @@ class Ebook(EDocument):
         """
         if isinstance(other, Ebook):
             return self.id == other.id and \
-                   self.author == other.author and \
-                   self.title == other.title and \
-                   self.price == other.price and \
-                   self.topic == other.topic and \
-                   self.language == other.language and \
-                   self.pub_date == other.pub_date and \
-                   self.size == other.size and \
-                   self.doi == other.doi and \
-                   self.editor == other.editor and \
-                   self.pages == other.pages and \
-                   self.synopsis == other.synopsis
+                self.author == other.author and \
+                self.title == other.title and \
+                self.price == other.price and \
+                self.topic == other.topic and \
+                self.language == other.language and \
+                self.pub_date == other.pub_date and \
+                self.size == other.size and \
+                self.doi == other.doi and \
+                self.editor == other.editor and \
+                self.pages == other.pages and \
+                self.synopsis == other.synopsis
         return False
 
+
 if __name__ == "__main__":
-    ebook = Ebook(1, 'author', 'title', 0.1, 'topic', 'lang', date.today(), 0.1, 'doi', 'editor', 1, 'synopsis')
+    ebook = Ebook(1, 'author', 'title', 0.1, 'topic', 'lang',
+                  date.today(), 0.1, 'doi', 'editor', 1, 'synopsis')
     assert ebook.id == 1
     assert ebook.author == 'author'
     assert ebook.title == 'title'
@@ -163,6 +167,7 @@ if __name__ == "__main__":
 
     print(ebook.__str__())
 
-    ebook2 = Ebook(1, 'author', 'title', 0.1, 'topic', 'lang', date.today(), 0.1, 'doi', 'editor', 1, 'synopsis')
+    ebook2 = Ebook(1, 'author', 'title', 0.1, 'topic', 'lang',
+                   date.today(), 0.1, 'doi', 'editor', 1, 'synopsis')
 
     print("ebook == ebook2") if ebook == ebook2 else print("ebook != ebook2")

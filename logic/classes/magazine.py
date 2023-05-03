@@ -1,10 +1,12 @@
-from edocument import EDocument
+from logic.classes.edocument import EDocument
 from datetime import date
+
 
 class Magazine(EDocument):
     """
     A class that represents a magazine
     """
+
     def __init__(self,
                  id: int = 0,
                  author: str = 'author',
@@ -54,7 +56,7 @@ class Magazine(EDocument):
         :rtype: int
         """
         return self.__edition
-    
+
     @edition.setter
     def edition(self, edition: int):
         """
@@ -72,7 +74,7 @@ class Magazine(EDocument):
         :rtype: int
         """
         return self.__pages
-    
+
     @pages.setter
     def pages(self, pages: int):
         """
@@ -110,20 +112,22 @@ class Magazine(EDocument):
         """
         if isinstance(other, Magazine):
             return self.id == other.id and \
-                   self.author == other.author and \
-                   self.title == other.title and \
-                   self.price == other.price and \
-                   self.topic == other.topic and \
-                   self.language == other.language and \
-                   self.pub_date == other.pub_date and \
-                   self.size == other.size and \
-                   self.doi == other.doi and \
-                   self.edition == other.edition and \
-                   self.pages == other.pages
+                self.author == other.author and \
+                self.title == other.title and \
+                self.price == other.price and \
+                self.topic == other.topic and \
+                self.language == other.language and \
+                self.pub_date == other.pub_date and \
+                self.size == other.size and \
+                self.doi == other.doi and \
+                self.edition == other.edition and \
+                self.pages == other.pages
         return False
-    
+
+
 if __name__ == "__main__":
-    magazine = Magazine(1, 'author', 'title', 0.1, 'topic', 'lang', date.today(), 0.1, 'doi', 1, 1)
+    magazine = Magazine(1, 'author', 'title', 0.1, 'topic',
+                        'lang', date.today(), 0.1, 'doi', 1, 1)
     assert magazine.id == 1
     assert magazine.author == 'author'
     assert magazine.title == 'title'
@@ -135,10 +139,11 @@ if __name__ == "__main__":
     assert magazine.doi == 'doi'
     assert magazine.edition == 1
     assert magazine.pages == 1
-    
-    
+
     print(magazine.__str__())
 
-    magazine2 = Magazine(1, 'author', 'title', 0.1, 'topic', 'lang', date.today(), 0.1, 'doi', 1, 1)
+    magazine2 = Magazine(1, 'author', 'title', 0.1, 'topic',
+                         'lang', date.today(), 0.1, 'doi', 1, 1)
 
-    print("magazine == magazine2") if magazine == magazine2 else print("magazine != magazine2")
+    print("magazine == magazine2") if magazine == magazine2 else print(
+        "magazine != magazine2")

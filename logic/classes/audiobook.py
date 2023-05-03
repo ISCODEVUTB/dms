@@ -1,10 +1,12 @@
-from edocument import EDocument
+from logic.classes.edocument import EDocument
 from datetime import date
+
 
 class AudioBook(EDocument):
     """
     A class that represents an audio book
     """
+
     def __init__(self,
                  id: int = 0,
                  author: str = 'author',
@@ -54,7 +56,7 @@ class AudioBook(EDocument):
         :rtype: int
         """
         return self.__duration
-    
+
     @duration.setter
     def duration(self, duration: int) -> None:
         """
@@ -73,7 +75,7 @@ class AudioBook(EDocument):
         :rtype: str
         """
         return self.__synopsis
-    
+
     @synopsis.setter
     def synopsis(self, synopsis: str) -> None:
         """
@@ -101,7 +103,7 @@ class AudioBook(EDocument):
                 "doi": self.doi,
                 "duration": self.duration,
                 "synopsis": self.synopsis}
-    
+
     def __eq__(self, other: object) -> bool:
         """
         Equality operator
@@ -112,20 +114,22 @@ class AudioBook(EDocument):
         """
         if isinstance(other, AudioBook):
             return self.id == other.id and \
-                   self.author == other.author and \
-                   self.title == other.title and \
-                   self.price == other.price and \
-                   self.topic == other.topic and \
-                   self.language == other.language and \
-                   self.pub_date == other.pub_date and \
-                   self.size == other.size and \
-                   self.doi == other.doi and \
-                   self.duration == other.duration and \
-                   self.synopsis == other.synopsis
+                self.author == other.author and \
+                self.title == other.title and \
+                self.price == other.price and \
+                self.topic == other.topic and \
+                self.language == other.language and \
+                self.pub_date == other.pub_date and \
+                self.size == other.size and \
+                self.doi == other.doi and \
+                self.duration == other.duration and \
+                self.synopsis == other.synopsis
         return False
-    
+
+
 if __name__ == "__main__":
-    audio_book = AudioBook(1, 'author', 'title', 0.1, 'topic', 'lang', date.today(), 0.1, 'doi', 1, 'synopsis')
+    audio_book = AudioBook(1, 'author', 'title', 0.1, 'topic',
+                           'lang', date.today(), 0.1, 'doi', 1, 'synopsis')
     assert audio_book.id == 1
     assert audio_book.author == 'author'
     assert audio_book.title == 'title'
@@ -140,5 +144,7 @@ if __name__ == "__main__":
 
     print(audio_book.__str__())
 
-    audio_book2 = AudioBook(1, 'author', 'title', 0.1, 'topic', 'lang', date.today(), 0.1, 'doi', 1, 'synopsis')
-    print("audio_book == audio_book2") if audio_book == audio_book2 else print("audio_book != audio_book2")
+    audio_book2 = AudioBook(1, 'author', 'title', 0.1, 'topic',
+                            'lang', date.today(), 0.1, 'doi', 1, 'synopsis')
+    print("audio_book == audio_book2") if audio_book == audio_book2 else print(
+        "audio_book != audio_book2")
