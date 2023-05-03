@@ -37,29 +37,9 @@ class EDocument(Document):
         :param doi: the doi of the document
         :type doi: str
         """
-        super().__init__(id, author, title, price, topic, language)
-        self.__pub_date = pub_date
+        super().__init__(id, author, title, price, topic, language, pub_date)
         self.__size = size
         self.__doi = doi
-
-    @property
-    def pub_date(self) -> date:
-        """
-        Getter for the publication date of the document
-        :return: the publication date of the document
-        :rtype: date
-        """
-        return self.__pub_date
-    
-    @pub_date.setter
-    def pub_date(self, pub_date: date) -> None:
-        """
-        Setter for the publication date of the document
-        :param pub_date: the new publication date of the document
-        :type pub_date: date
-        :return: None
-        """
-        self.__pub_date = pub_date
 
     @property
     def size(self) -> float:
@@ -111,7 +91,7 @@ class EDocument(Document):
                 "price": self.price,
                 "topic": self.topic,
                 "language": self.language,
-                "pub_date": self.pub_date,
+                "pub_date": self.pub_date.strftime("%Y/%m/%d"),
                 "size": self.size,
                 "doi": self.doi}
     
@@ -136,20 +116,20 @@ class EDocument(Document):
         return False
         
 if __name__ == "__main__":
-    edocument = EDocument(1, 'author', 'title', 0.1, 'topic', 'lang', date.today().isoformat(), 0.1, 'doi')
+    edocument = EDocument(1, 'author', 'title', 0.1, 'topic', 'lang', date.today(), 0.1, 'doi')
     assert edocument.id == 1
     assert edocument.author == 'author'
     assert edocument.title == 'title'
     assert edocument.price == 0.1
     assert edocument.topic == 'topic'
     assert edocument.language == 'lang'
-    assert edocument.pub_date == date.today().isoformat()
+    assert edocument.pub_date == date.today()
     assert edocument.size == 0.1
     assert edocument.doi == 'doi'
 
     print(json.dumps(edocument.__str__()))
 
-    edocument2 = EDocument(1, 'author', 'title', 0.1, 'topic', 'lang', date.today().isoformat(), 0.1, 'doi')
+    edocument2 = EDocument(1, 'author', 'title', 0.1, 'topic', 'lang', date.today(), 0.1, 'doi')
 
     print("edocument == edocument2") if edocument == edocument2 else print("edocument != edocument2")
         

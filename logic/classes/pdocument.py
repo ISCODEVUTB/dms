@@ -3,7 +3,7 @@ from datetime import date
 from document import Document
 
 
-class FDocument (Document):
+class PDocument (Document):
     """
     A class that represents a physical document
     """
@@ -15,6 +15,7 @@ class FDocument (Document):
                  price: float = 0.1,
                  topic: str = 'topic',
                  language: str = 'lang',
+                 pub_date: date = date.today(),
                  publisher: str = 'publisher') -> object:
         """
         Constructor of the class
@@ -33,7 +34,7 @@ class FDocument (Document):
         :param publisher: the publisher of the document
         :type publisher: str
         """
-        super().__init__(id, author, title, price, topic, language)
+        super().__init__(id, author, title, price, topic, language, pub_date)
         self.__publisher = publisher
 
     @property
@@ -67,6 +68,7 @@ class FDocument (Document):
                 "price": self.price,
                 "topic": self.topic,
                 "language": self.language,
+                "pub_date": self.pub_date.strftime("%Y/%m/%d"),
                 "publisher": self.publisher}
 
     def __eq__(self, other) -> bool:
@@ -77,19 +79,20 @@ class FDocument (Document):
         :return: True if the documents are equal, False otherwise
         :rtype: bool
         """
-        if isinstance(other, FDocument):
+        if isinstance(other, PDocument):
             return self.id == other.id and \
                 self.author == other.author and \
                 self.title == other.title and \
                 self.price == other.price and \
                 self.topic == other.topic and \
                 self.language == other.language and \
+                self.pub_date == other.pub_date and \
                 self.publisher == other.publisher
         return False
 
 
 if __name__ == '__main__':
-    doc = FDocument(1, 'author', 'title', 0.1, 'topic', 'lang', 'publisher')
+    doc = PDocument(1, 'author', 'title', 0.1, 'topic', 'lang', date.today(), 'publisher')
     print(json.dumps(doc.__str__()))
-    doc2 = FDocument(1, 'author', 'title', 0.1, 'topic', 'lang', 'publisher')
+    doc2 = PDocument(1, 'author', 'title', 0.1, 'topic', 'lang', date.today(), 'publisher')
     print(doc == doc2)

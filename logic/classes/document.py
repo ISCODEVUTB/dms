@@ -1,4 +1,5 @@
 import json
+from datetime import date
 class Document(object):
     """
     A class that represents a document
@@ -9,7 +10,8 @@ class Document(object):
                  title: str = 'title',
                  price: float = 0.1,
                  topic: str = 'topic',
-                 language: str = 'lang') -> object:
+                 language: str = 'lang',
+                 pub_date: date = date.today()) -> object:
         """
         Constructor of the class
         :param id: the id of the document
@@ -32,6 +34,7 @@ class Document(object):
         self.__price = price
         self.__topic = topic
         self.__language = language
+        self.__pub_date = pub_date
 
     @property
     def id(self) -> int:
@@ -147,6 +150,25 @@ class Document(object):
         """
         self.__language = language
 
+    @property
+    def pub_date(self) -> date:
+        """
+        Getter for the publication date of the document
+        :return: the publication date of the document
+        :rtype: date
+        """
+        return self.__pub_date
+    
+    @pub_date.setter
+    def pub_date(self, pub_date: date) -> None:
+        """
+        Setter for the publication date of the document
+        :param pub_date: the new publication date of the document
+        :type pub_date: date
+        :return: None
+        """
+        self.__pub_date = pub_date
+
     def __str__(self) -> str:
         """
         String representation of the document
@@ -158,7 +180,8 @@ class Document(object):
                 "title": self.__title,
                 "price": self.__price,
                 "topic": self.__topic,
-                "language": self.__language}
+                "language": self.__language,
+                "pub_date": self.__pub_date.strftime("%Y/%m/%d")}
     
     def __eq__(self, other: object) -> bool:
         """
@@ -174,21 +197,23 @@ class Document(object):
                    self.title == other.title and \
                    self.price == other.price and \
                    self.topic == other.topic and \
-                   self.language == other.language
+                   self.language == other.language and \
+                   self.pub_date == other.pub_date
         return False
     
 if __name__ == '__main__':
-    doc = Document(1, 'author', 'title', 0.1, 'topic', 'lang')
+    doc = Document(1, 'author', 'title', 0.1, 'topic', 'lang', date.today())
     assert doc.id == 1
     assert doc.author == 'author'
     assert doc.title == 'title'
     assert doc.price == 0.1
     assert doc.topic == 'topic'
     assert doc.language == 'lang'
+    assert doc.pub_date == date.today()
 
-    doc2 = Document(2, 'author2', 'title2', 0.2, 'topic2', 'lang2')
-    doc3 = Document(1, 'author', 'title', 0.1, 'topic', 'lang')
-    print(json.dumps(doc.__str__()))
+    doc2 = Document(2, 'author2', 'title2', 0.2, 'topic2', 'lang2', date.today())
+    doc3 = Document(1, 'author', 'title', 0.1, 'topic', 'lang', date.today())
+    print(doc.__str__())
 
     print("The documents are equal") if doc.__eq__(doc2) else print("The documents are not equal")
         
