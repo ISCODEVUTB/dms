@@ -136,10 +136,10 @@ class Bill (object):
         :rtype: str
         """
         return {"id": self.__id,
-                "buyer": self.__buyer,
+                "buyer": self.__buyer.__str__(),
                 "date": self.__date,
                 "price": self.__price,
-                "items": self.__items}
+                "items": self.__items.__str__()}
 
     def __eq__(self, other: object) -> bool:
         """
