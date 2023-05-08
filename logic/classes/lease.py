@@ -13,7 +13,7 @@ class Lease(object):
                  start_date: date = date.today(),
                  finish_date: date = date(date.today().year,
                                           date.today().month+1,
-                                          31),
+                                          20),
                  pay_method: str = 'pay_method',
                  total_price: float = 0.1,
                  items: list = [Document()]) -> object:
