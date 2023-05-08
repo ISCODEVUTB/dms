@@ -1,6 +1,6 @@
 import json
 from datetime import date
-from document import Document
+from logic.classes.document import Document
 
 
 class PDocument (Document):
@@ -92,7 +92,9 @@ class PDocument (Document):
 
 
 if __name__ == '__main__':
-    doc = PDocument(1, 'author', 'title', 0.1, 'topic', 'lang', date.today(), 'publisher')
+    doc = PDocument(1, 'author', 'title', 0.1, 'topic',
+                    'lang', date.today(), 'publisher')
     print(json.dumps(doc.__str__()))
-    doc2 = PDocument(1, 'author', 'title', 0.1, 'topic', 'lang', date.today(), 'publisher')
+    doc2 = PDocument(1, 'author', 'title', 0.1, 'topic',
+                     'lang', date.today(), 'publisher')
     print(doc == doc2)

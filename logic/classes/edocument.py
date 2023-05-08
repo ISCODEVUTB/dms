@@ -1,11 +1,13 @@
 import json
-from document import Document
+from logic.classes.document import Document
 from datetime import date
+
 
 class EDocument(Document):
     """
     A class that represents an electronic document
     """
+
     def __init__(self,
                  id: int = 0,
                  author: str = 'author',
@@ -49,7 +51,7 @@ class EDocument(Document):
         :rtype: float
         """
         return self.__size
-    
+
     @size.setter
     def size(self, size: float) -> None:
         """
@@ -68,7 +70,7 @@ class EDocument(Document):
         :rtype: str
         """
         return self.__doi
-    
+
     @doi.setter
     def doi(self, doi: str) -> None:
         """
@@ -94,7 +96,7 @@ class EDocument(Document):
                 "pub_date": self.pub_date.strftime("%Y/%m/%d"),
                 "size": self.size,
                 "doi": self.doi}
-    
+
     def __eq__(self, other: object) -> bool:
         """
         Equality operator
@@ -105,18 +107,20 @@ class EDocument(Document):
         """
         if isinstance(other, EDocument):
             return self.id == other.id and \
-                   self.author == other.author and \
-                   self.title == other.title and \
-                   self.price == other.price and \
-                   self.topic == other.topic and \
-                   self.language == other.language and \
-                   self.pub_date == other.pub_date and \
-                   self.size == other.size and \
-                   self.doi == other.doi
+                self.author == other.author and \
+                self.title == other.title and \
+                self.price == other.price and \
+                self.topic == other.topic and \
+                self.language == other.language and \
+                self.pub_date == other.pub_date and \
+                self.size == other.size and \
+                self.doi == other.doi
         return False
-        
+
+
 if __name__ == "__main__":
-    edocument = EDocument(1, 'author', 'title', 0.1, 'topic', 'lang', date.today(), 0.1, 'doi')
+    edocument = EDocument(1, 'author', 'title', 0.1,
+                          'topic', 'lang', date.today(), 0.1, 'doi')
     assert edocument.id == 1
     assert edocument.author == 'author'
     assert edocument.title == 'title'
@@ -129,7 +133,8 @@ if __name__ == "__main__":
 
     print(json.dumps(edocument.__str__()))
 
-    edocument2 = EDocument(1, 'author', 'title', 0.1, 'topic', 'lang', date.today(), 0.1, 'doi')
+    edocument2 = EDocument(1, 'author', 'title', 0.1,
+                           'topic', 'lang', date.today(), 0.1, 'doi')
 
-    print("edocument == edocument2") if edocument == edocument2 else print("edocument != edocument2")
-        
+    print("edocument == edocument2") if edocument == edocument2 else print(
+        "edocument != edocument2")
