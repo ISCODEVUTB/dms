@@ -29,8 +29,8 @@ def read_root():
 
 
 @app.get("/api/document/select")
-async def root():
-    return bd_object.select_documents()
+async def root(table_name: str = ''):
+    return bd_object.select_documents(table_name)
 
 
 @app.post("/api/document/ElectronicDoc/Add/Book")
