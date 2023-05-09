@@ -8,12 +8,21 @@ from logic.classes.magazine import Magazine
 
 
 class DatabaseController():
+    """
+    This class is used to connect to the database and execute queries
+    """
 
     def __init__(self):
+        """
+        Constructor
+        """
         self.connection = sqlite3.connect('Inventory.sqlite')
         self.cursor = self.connection.cursor()
 
     def insert_document(self, document: Book or Ebook or Magazine or AudioBook or InvBook):
+        """
+        This method is used to insert a document into the database
+        """
 
         self.connection = sqlite3.connect('Inventory.sqlite')
         self.cursor = self.connection.cursor()
@@ -59,6 +68,9 @@ class DatabaseController():
             return "Document inserted successfully"
 
     def delete_document(self, ID_document: int, table_name: str):
+        """
+        This method is used to delete a document from the database
+        """
         self.connection = sqlite3.connect('Inventory.sqlite')
         self.cursor = self.connection.cursor()
 
@@ -101,11 +113,13 @@ class DatabaseController():
             return "Document not found"
 
     def select_documents(self, table_name: str):
+        """
+        This method is used to select all documents from the database
+        """
         self.connection = sqlite3.connect('Inventory.sqlite')
         self.cursor = self.connection.cursor()
         try:
-            if table_name == "":  
-                # conn = sqlite3.connect(self)
+            if table_name == "":
                 self.cursor.execute('SELECT * FROM Books')
                 rows = self.cursor.fetchall()
                 self.cursor.execute('SELECT * FROM Ebooks')
