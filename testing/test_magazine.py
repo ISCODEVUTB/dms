@@ -1,11 +1,14 @@
 import unittest
-from magazine import Magazine
+from logic.classes.magazine import Magazine
 from datetime import date
 
+
 class TestMagazine(unittest.TestCase):
-    magazine = Magazine(123, "ian", "forbes", 9.99, "Fashion", "english", date.today(), 10.0, "doi123", 2, 50)
+    magazine = Magazine(123, "ian", "forbes", 9.99, "Fashion",
+                        "english", date.today(), 10.0, "doi123", 2, 50)
 
     print(magazine.__str__())
+
     def test_instance(self):
         self.assertIsInstance(self.magazine, Magazine, "Its instance!")
 
@@ -43,9 +46,10 @@ class TestMagazine(unittest.TestCase):
         self.assertEqual(self.magazine.pages, 50)
 
     def test__str__(self):
-        self.assertEquals(self.magazine.__str__(),{'id': 123, 'author': 'ian', 'title': 'forbes', 'price': 9.99, 
-                                                   'topic': 'Fashion', 'language': 'english', 'pub_date': date.today().strftime("%Y/%m/%d"), 
-                                                   'size': 10.0, 'doi': 'doi123', 'edition': 2, 'pages': 50})
+        self.assertEquals(self.magazine.__str__(), {'id': 123, 'author': 'ian', 'title': 'forbes', 'price': 9.99,
+                                                    'topic': 'Fashion', 'language': 'english', 'pub_date': date.today().strftime("%Y/%m/%d"),
+                                                    'size': 10.0, 'doi': 'doi123', 'edition': 2, 'pages': 50})
+
 
 if __name__ == '__main__':
     unittest.main()

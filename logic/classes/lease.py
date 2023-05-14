@@ -1,6 +1,6 @@
 import json
 from datetime import date
-from document import Document
+from logic.classes.document import Document
 
 
 class Lease(object):

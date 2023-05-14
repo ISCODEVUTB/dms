@@ -1,7 +1,7 @@
 import unittest
-from client import Client
+from logic.classes.client import Client
 from datetime import date
-from delivery import Delivery
+from logic.classes.delivery import Delivery
 
 
 class TestDelivery(unittest.TestCase):
@@ -21,7 +21,8 @@ class TestDelivery(unittest.TestCase):
         self.assertEqual(self.delivery.date, date.today())
 
     def test__str__(self):
-        self.assertEqual(self.delivery.__str__(),{'id': 123,'buyer': self.buyer.__str__(),'date': date.today(), })
+        self.assertEqual(self.delivery.__str__(), {
+                         'id': 123, 'buyer': self.buyer.__str__(), 'date': date.today(), })
 
 
 if __name__ == '__main__':

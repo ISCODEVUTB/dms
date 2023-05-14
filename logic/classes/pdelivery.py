@@ -1,8 +1,8 @@
 import json
 from datetime import date
-from delivery import Delivery
-from person import Person
-from address import Address
+from logic.classes.delivery import Delivery
+from logic.classes.person import Person
+from logic.classes.address import Address
 
 
 class PDelivery (Delivery):

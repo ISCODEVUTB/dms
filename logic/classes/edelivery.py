@@ -1,12 +1,14 @@
 from datetime import date
 import json
-from delivery import Delivery
-from person import Person
+from logic.classes.delivery import Delivery
+from logic.classes.person import Person
+
 
 class EDelivery (Delivery):
     """
     A class that represents an Electronic Delivery
     """
+
     def __init__(self,
                  id: int = 0,
                  buyer: Person = Person(),
@@ -34,7 +36,7 @@ class EDelivery (Delivery):
         :rtype: str
         """
         return self.__deliver_mail
-    
+
     @deliver_mail.setter
     def deliver_mail(self, deliver_mail: str) -> None:
         """
@@ -55,7 +57,7 @@ class EDelivery (Delivery):
                 "buyer": self.buyer,
                 "date": self.date,
                 "deliver_mail": self.deliver_mail}
-    
+
     def __eq__(self, other: object) -> bool:
         """
         Equals method
@@ -66,10 +68,11 @@ class EDelivery (Delivery):
         """
         if isinstance(other, EDelivery):
             return self.id == other.id and \
-                   self.buyer == other.buyer and \
-                   self.date == other.date and \
-                   self.deliver_mail == other.deliver_mail
+                self.buyer == other.buyer and \
+                self.date == other.date and \
+                self.deliver_mail == other.deliver_mail
         return False
+
 
 if __name__ == '__main__':
     buyer = Person(1, 'name', 'last_name', 'phone', 'mail')
@@ -77,4 +80,5 @@ if __name__ == '__main__':
     print(edelivery.__str__())
     edelivery2 = EDelivery(1, buyer.__str__(), date.today(), 'deliver_mail')
 
-    print("edeliver1 == edelivery2") if edelivery.__eq__(edelivery2) else print("edeliver1 != edelivery2")
+    print("edeliver1 == edelivery2") if edelivery.__eq__(
+        edelivery2) else print("edeliver1 != edelivery2")

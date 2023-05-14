@@ -1,5 +1,5 @@
 import json
-from document import Document
+from logic.classes.document import Document
 from datetime import date
 
 

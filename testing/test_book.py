@@ -1,11 +1,14 @@
 import unittest
 from datetime import date
-from book import Book
+from logic.classes.book import Book
+
 
 class TestBook(unittest.TestCase):
-    book = Book(1234, "ian", "art", 19.99, "fiction", "english", date.today(), "norma", "alba", 250, "A great book", "A great presentation")
+    book = Book(1234, "ian", "art", 19.99, "fiction", "english", date.today(
+    ), "norma", "alba", 250, "A great book", "A great presentation")
 
     print(book.__str__())
+
     def test_instance(self):
         self.assertIsInstance(self.book, Book, "Its instance!")
 
@@ -46,10 +49,11 @@ class TestBook(unittest.TestCase):
         self.assertEqual(self.book.presentation, "A great presentation")
 
     def test__str__(self):
-        self.assertEquals(self.book.__str__(),{'id': 1234, 'author': 'ian', 'title': 'art', 'price': 19.99, 
-                                               'topic': 'fiction', 'language': 'english', 'pub_date': date.today().strftime("%Y/%m/%d"), 
-                                               'publisher': 'norma', 'editor': 'alba', 'pages': 250, 
-                                               'synopsis': 'A great book', 'presentation': 'A great presentation'})
+        self.assertEquals(self.book.__str__(), {'id': 1234, 'author': 'ian', 'title': 'art', 'price': 19.99,
+                                                'topic': 'fiction', 'language': 'english', 'pub_date': date.today().strftime("%Y/%m/%d"),
+                                                'publisher': 'norma', 'editor': 'alba', 'pages': 250,
+                                                'synopsis': 'A great book', 'presentation': 'A great presentation'})
+
 
 if __name__ == '__main__':
     unittest.main()

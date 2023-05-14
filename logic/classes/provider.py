@@ -1,7 +1,7 @@
 import json
-from person import Person
-from address import Address
-from document import Document
+from logic.classes.person import Person
+from logic.classes.address import Address
+from logic.classes.document import Document
 
 
 class Provider (Person):

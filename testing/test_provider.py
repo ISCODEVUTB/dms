@@ -1,15 +1,18 @@
 import unittest
 from datetime import date
-from person import Person
-from address import Address
-from document import Document
-from provider import Provider
+from logic.classes.person import Person
+from logic.classes.address import Address
+from logic.classes.document import Document
+from logic.classes.provider import Provider
 
 
 class TestProvider(unittest.TestCase):
-    address = Address("colombia","bolivar","cartagena","1101","Horizonte","mzn3","house")
-    document = Document(12345, 'ian', 'My Document', 10000, 'Science', 'spanish',date.today())
-    provider = Provider(1, 'John', 'Doe', '555-555-5555', 'john@example.com', address.__str__(), [document.__str__()])
+    address = Address("colombia", "bolivar", "cartagena",
+                      "1101", "Horizonte", "mzn3", "house")
+    document = Document(12345, 'ian', 'My Document', 10000,
+                        'Science', 'spanish', date.today())
+    provider = Provider(1, 'John', 'Doe', '555-555-5555',
+                        'john@example.com', address.__str__(), [document.__str__()])
 
     def test_instance(self):
         self.assertIsInstance(self.provider, Provider)
@@ -34,11 +37,12 @@ class TestProvider(unittest.TestCase):
 
     def test_inventory(self):
         self.assertEqual(self.provider.inventory, [self.document.__str__()])
-     
+
     def test__str__(self):
-        self.assertEqual(self.provider.__str__(), {'id': 1, 'name': 'John', 'last_name': 'Doe', 'phone': '555-555-5555', 'mail': 'john@example.com', 
-                                                   'address': self.address.__str__(), 
+        self.assertEqual(self.provider.__str__(), {'id': 1, 'name': 'John', 'last_name': 'Doe', 'phone': '555-555-5555', 'mail': 'john@example.com',
+                                                   'address': self.address.__str__(),
                                                    'inventory': [self.document.__str__()]})
+
 
 if __name__ == '__main__':
     unittest.main()

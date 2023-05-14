@@ -1,6 +1,6 @@
 import json
-from person import Person
-from document import Document
+from logic.classes.person import Person
+from logic.classes.document import Document
 from datetime import date
 
 
