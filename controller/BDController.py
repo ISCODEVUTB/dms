@@ -118,30 +118,27 @@ class DatabaseController():
         """
         self.connection = sqlite3.connect('Inventory.sqlite')
         self.cursor = self.connection.cursor()
-        try:
-            if table_name == "":
-                self.cursor.execute('SELECT * FROM Books')
-                rows = self.cursor.fetchall()
-                self.cursor.execute('SELECT * FROM Ebooks')
-                rows += self.cursor.fetchall()
-                self.cursor.execute('SELECT * FROM Audiobooks')
-                rows += self.cursor.fetchall()
-                self.cursor.execute('SELECT * FROM Magazines')
-                rows += self.cursor.fetchall()
-                self.cursor.execute('SELECT * FROM Investigation_books')
-                rows += self.cursor.fetchall()
-                print(rows)
-                self.connection.commit()
-                self.connection.close()
-                return rows 
-            else:
-                self.cursor.execute(
-                    '''SELECT * FROM {}'''.format(table_name))
-                rows = self.cursor.fetchall()
-                self.connection.commit()
-                self.connection.close()
-                return rows
-        finally:
+        if table_name == "":
+            self.cursor.execute('SELECT * FROM Books')
+            rows = self.cursor.fetchall()
+            self.cursor.execute('SELECT * FROM Ebooks')
+            rows += self.cursor.fetchall()
+            self.cursor.execute('SELECT * FROM Audiobooks')
+            rows += self.cursor.fetchall()
+            self.cursor.execute('SELECT * FROM Magazines')
+            rows += self.cursor.fetchall()
+            self.cursor.execute('SELECT * FROM Investigation_books')
+            rows += self.cursor.fetchall()
+            print(rows)
+            self.connection.commit()
+            self.connection.close()
+            return rows
+        else:
+            self.cursor.execute(
+                '''SELECT * FROM {}'''.format(table_name))
+            rows = self.cursor.fetchall()
+            self.connection.commit()
+            self.connection.close()
             return rows
 
 
