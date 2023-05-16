@@ -56,7 +56,7 @@ class PDocument (Document):
         """
         self.__publisher = publisher
 
-    def __str__(self) -> str:
+    def __str__(self) -> dict:
         """
         String representation of the document
         :return: the string representation of the document

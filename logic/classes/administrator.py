@@ -1,5 +1,5 @@
 import json
-from person import Person
+from logic.classes.person import Person
 
 
 class Administrator (Person):
@@ -30,7 +30,7 @@ class Administrator (Person):
         """
         super().__init__(id, name, last_name, phone, mail)
 
-    def __str__(self) -> str:
+    def __str__(self) -> dict:
         """
         Method that returns the string representation of the Administrator
         :return: the string representation of the Administrator

@@ -1,10 +1,11 @@
 import unittest
-from document import Document
+from logic.classes.document import Document
 from datetime import date
 
 
 class TestDocument(unittest.TestCase):
-    document = Document(12345, 'ian', 'My Document', 10000, 'Science', 'spanish',date.today())
+    document = Document(12345, 'ian', 'My Document', 10000,
+                        'Science', 'spanish', date.today())
 
     def test_instance(self):
         self.assertIsInstance(self.document, Document, "Its instance!")
@@ -26,12 +27,26 @@ class TestDocument(unittest.TestCase):
 
     def test_language(self):
         self.assertEqual(self.document.language, 'spanish')
-    
+
     def test_pub_date(self):
         self.assertEqual(self.document.pub_date, date.today())
-    
+
+    def test_setters(self):
+        self.document.id = 54321
+        self.document.author = 'ian'
+        self.document.title = 'My Document'
+        self.document.price = 10000
+        self.document.topic = 'Science'
+        self.document.language = 'spanish'
+        self.document.pub_date = date.today()
+
     def test__str__(self):
-        self.assertEqual(self.document.__str__(),{'id': 12345, 'author': "ian", 'title': "My Document", 'price': 10000, 'topic': "Science",'language':"spanish",'pub_date': date.today().strftime("%Y/%m/%d")})
-          
+        self.assertEqual(self.document.__str__(), {'id': 12345, 'author': "ian", 'title': "My Document",
+                         'price': 10000, 'topic': "Science", 'language': "spanish", 'pub_date': date.today().strftime("%Y/%m/%d")})
+
+    def test__eq__(self):
+        self.assertEqual(self.document.__eq__(self.document), True)
+
+
 if __name__ == '__main__':
     unittest.main()

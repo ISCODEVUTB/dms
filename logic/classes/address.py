@@ -49,14 +49,14 @@ class Address (object):
         return self.__country
 
     @country.setter
-    def country(self, country: str) -> None:
+    def country(self, new_country: str) -> None:
         """
         Setter for the country of the address
         :param country: the new country of the address
         :type country: str
         :return: None
         """
-        self.__country = country
+        self.__country = new_country
 
     @property
     def department(self) -> str:
@@ -172,7 +172,7 @@ class Address (object):
         """
         self.__complement = complement
 
-    def __str__(self) -> str:
+    def __str__(self) -> dict:
         """
         String representation of the address
         :return: the string representation of the address

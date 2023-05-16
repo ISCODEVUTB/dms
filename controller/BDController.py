@@ -6,6 +6,10 @@ from logic.classes.ebook import Ebook
 from logic.classes.invbook import InvBook
 from logic.classes.magazine import Magazine
 
+DATABASE = 'Inventory.sqlite'
+INSERT_SUCCESS = "Document inserted successfully"
+DELETE_SUCCESS = "Document deleted successfully"
+
 
 class DatabaseController():
     """
@@ -16,7 +20,7 @@ class DatabaseController():
         """
         Constructor
         """
-        self.connection = sqlite3.connect('Inventory.sqlite')
+        self.connection = sqlite3.connect(DATABASE)
         self.cursor = self.connection.cursor()
 
     def insert_document(self, document: Book or Ebook or Magazine or AudioBook or InvBook):
@@ -24,7 +28,7 @@ class DatabaseController():
         This method is used to insert a document into the database
         """
 
-        self.connection = sqlite3.connect('Inventory.sqlite')
+        self.connection = sqlite3.connect(DATABASE)
         self.cursor = self.connection.cursor()
 
         if isinstance(document, AudioBook):
@@ -33,7 +37,7 @@ class DatabaseController():
             self.connection.commit()
             self.connection.close()
 
-            return "Document inserted successfully"
+            return INSERT_SUCCESS
 
         elif isinstance(document, Ebook):
             self.cursor.execute('INSERT INTO Ebooks (author, title, price, topic, language, pub_date, size, doi, editor, pages, synopsis) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
@@ -41,7 +45,7 @@ class DatabaseController():
             self.connection.commit()
             self.connection.close()
 
-            return "Document inserted successfully"
+            return INSERT_SUCCESS
 
         elif isinstance(document, Magazine):
             self.cursor.execute('INSERT INTO Magazines ( author, title, price, topic, language, pub_date, size, doi, edition, pages) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
@@ -49,7 +53,7 @@ class DatabaseController():
             self.connection.commit()
             self.connection.close()
 
-            return "Document inserted successfully"
+            return INSERT_SUCCESS
 
         elif isinstance(document, InvBook):
             self.cursor.execute('INSERT INTO Investigation_books (author, title, price, topic, language, pub_date, size, doi, pages, abstract) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
@@ -57,7 +61,7 @@ class DatabaseController():
             self.connection.commit()
             self.connection.close()
 
-            return "Document inserted successfully"
+            return INSERT_SUCCESS
 
         elif isinstance(document, Book):
             self.cursor.execute('INSERT INTO Books (author, title, price, topic, language, pub_date, publisher, editor, pages, synopsis, presentation) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
@@ -65,49 +69,49 @@ class DatabaseController():
             self.connection.commit()
             self.connection.close()
 
-            return "Document inserted successfully"
+            return INSERT_SUCCESS
 
-    def delete_document(self, ID_document: int, table_name: str):
+    def delete_document(self, id_document: int, table_name: str):
         """
         This method is used to delete a document from the database
         """
-        self.connection = sqlite3.connect('Inventory.sqlite')
+        self.connection = sqlite3.connect(DATABASE)
         self.cursor = self.connection.cursor()
 
         if table_name == "Audiobooks":
             self.cursor.execute(
-                '''DELETE FROM Audiobooks WHERE ID = ?''', (ID_document,))
+                '''DELETE FROM Audiobooks WHERE ID = ?''', (id_document,))
             self.connection.commit()
             self.connection.close()
-            return "Document deleted successfully"
+            return DELETE_SUCCESS
 
         elif table_name == "Ebooks":
             self.cursor.execute(
-                '''DELETE FROM Ebooks WHERE ID = ?''', (ID_document,))
+                '''DELETE FROM Ebooks WHERE ID = ?''', (id_document,))
             self.connection.commit()
             self.connection.close()
-            return "Document deleted successfully"
+            return DELETE_SUCCESS
 
         elif table_name == "Magazines":
             self.cursor.execute(
-                '''DELETE FROM Magazines WHERE ID = ?''', (ID_document,))
+                '''DELETE FROM Magazines WHERE ID = ?''', (id_document,))
             self.connection.commit()
             self.connection.close()
-            return "Document deleted successfully"
+            return DELETE_SUCCESS
 
         elif table_name == "Investigation_books":
             self.cursor.execute(
-                '''DELETE FROM Investigation_books WHERE ID = ?''', (ID_document,))
+                '''DELETE FROM Investigation_books WHERE ID = ?''', (id_document,))
             self.connection.commit()
             self.connection.close()
-            return "Document deleted successfully"
+            return DELETE_SUCCESS
 
         elif table_name == "Books":
             self.cursor.execute(
-                '''DELETE FROM Books WHERE ID = ?''', (ID_document,))
+                '''DELETE FROM Books WHERE ID = ?''', (id_document,))
             self.connection.commit()
             self.connection.close()
-            return "Document deleted successfully"
+            return DELETE_SUCCESS
 
         else:
             return "Document not found"
@@ -116,7 +120,7 @@ class DatabaseController():
         """
         This method is used to select all documents from the database
         """
-        self.connection = sqlite3.connect('Inventory.sqlite')
+        self.connection = sqlite3.connect(DATABASE)
         self.cursor = self.connection.cursor()
         try:
             if table_name == "":
@@ -130,10 +134,9 @@ class DatabaseController():
                 rows += self.cursor.fetchall()
                 self.cursor.execute('SELECT * FROM Investigation_books')
                 rows += self.cursor.fetchall()
-                print(rows)
                 self.connection.commit()
                 self.connection.close()
-                return rows 
+                return rows
             else:
                 self.cursor.execute(
                     '''SELECT * FROM {}'''.format(table_name))
@@ -141,8 +144,8 @@ class DatabaseController():
                 self.connection.commit()
                 self.connection.close()
                 return rows
-        finally:
-            return rows
+        except sqlite3.Error as error:
+            print("Failed to read data from sqlite table", error)
 
 
 if __name__ == "__main__":

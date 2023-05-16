@@ -84,7 +84,7 @@ class InvBook(EDocument):
         """
         self.__abstract = abstract
 
-    def __str__(self) -> str:
+    def __str__(self) -> dict:
         """
         String representation of the investigation book
         :return: the string representation of the investigation book

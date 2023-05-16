@@ -1,8 +1,8 @@
 import json
 from datetime import date
-from delivery import Delivery
-from person import Person
-from address import Address
+from logic.classes.delivery import Delivery
+from logic.classes.person import Person
+from logic.classes.address import Address
 
 
 class PDelivery (Delivery):
@@ -94,7 +94,7 @@ class PDelivery (Delivery):
         """
         self.__company = company
 
-    def __str__(self) -> str:
+    def __str__(self) -> dict:
         """
         String representation of the class
         :return: a string representing the class

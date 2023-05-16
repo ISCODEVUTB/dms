@@ -106,7 +106,7 @@ class Ebook(EDocument):
         """
         self.__synopsis = synopsis
 
-    def __str__(self) -> str:
+    def __str__(self) -> dict:
         """
         String representation of the Ebook
         :return: the string representation of the Ebook

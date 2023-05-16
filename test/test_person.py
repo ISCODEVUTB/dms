@@ -1,5 +1,5 @@
 import unittest
-from person import Person
+from logic.classes.person import Person
 
 
 class TestPerson(unittest.TestCase):
@@ -23,9 +23,19 @@ class TestPerson(unittest.TestCase):
     def test_mail(self):
         self.assertEqual(self.person.mail, "example@example.com")
 
+    def test_setters(self):
+        self.person.id = 1
+        self.person.name = "ian"
+        self.person.last_name = "montoya"
+        self.person.phone = "1234567890"
+        self.person.mail = "example@example.com"
+
     def test__str__(self):
-        self.assertEqual(self.person.__str__(), {'id': 1,'name': "ian",'last_name': "montoya",
-                                                 'phone': "1234567890",'mail': "example@example.com" })
+        self.assertEqual(self.person.__str__(), {'id': 1, 'name': "ian", 'last_name': "montoya",
+                                                 'phone': "1234567890", 'mail': "example@example.com"})
+
+    def test__eq__(self):
+        self.assertEqual(self.person.__eq__(self.person), True)
 
 
 if __name__ == '__main__':

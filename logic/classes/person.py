@@ -126,7 +126,7 @@ class Person (object):
         """
         self.__mail = mail
 
-    def __str__(self) -> str:
+    def __str__(self) -> dict:
         """
         String representation of the Person
         :return: the string representation of the Person

@@ -1,12 +1,13 @@
 import unittest
 from datetime import date
-from ebook import Ebook
+from logic.classes.ebook import Ebook
+
 
 class TestEbook(unittest.TestCase):
     book = Ebook(123456, "J.K. Rowling", "Harry Potter", 10.99, "Fantasy", "english",
                  date(1997, 6, 26), 2.5, "9780747532743", "Bloomsbury", 223,
                  " A boy discovers he is a wizard and attends a school of magic.")
-    
+
     print(book.__str__())
 
     def test_instance(self):
@@ -46,11 +47,31 @@ class TestEbook(unittest.TestCase):
         self.assertEqual(self.book.pages, 223)
 
     def test_synopsis(self):
-        self.assertEqual(self.book.synopsis, " A boy discovers he is a wizard and attends a school of magic.")
-                                                      
+        self.assertEqual(
+            self.book.synopsis, " A boy discovers he is a wizard and attends a school of magic.")
+
+    def test_setters(self):
+        self.book.id = 123456
+        self.book.author = "J.K. Rowling"
+        self.book.title = "Harry Potter"
+        self.book.price = 10.99
+        self.book.topic = "Fantasy"
+        self.book.language = "english"
+        self.book.pub_date = date(1997, 6, 26)
+        self.book.size = 2.5
+        self.book.doi = "9780747532743"
+        self.book.editor = "Bloomsbury"
+        self.book.pages = 223
+        self.book.synopsis = " A boy discovers he is a wizard and attends a school of magic."
+
     def test__str__(self):
-        self.assertEqual(self.book.__str__(), {'id': 123456, 'author': 'J.K. Rowling', 'title': 'Harry Potter', 'price': 10.99, 
-                                               'topic': 'Fantasy', 'language': 'english', 'pub_date': date(1997, 6, 26).strftime("%Y/%m/%d"), 'size': 2.5, 
+        self.assertEqual(self.book.__str__(), {'id': 123456, 'author': 'J.K. Rowling', 'title': 'Harry Potter', 'price': 10.99,
+                                               'topic': 'Fantasy', 'language': 'english', 'pub_date': date(1997, 6, 26).strftime("%Y/%m/%d"), 'size': 2.5,
                                                'doi': '9780747532743', 'editor': 'Bloomsbury', 'pages': 223, 'synopsis': ' A boy discovers he is a wizard and attends a school of magic.'})
+
+    def test__eq__(self):
+        self.assertEqual(self.book.__eq__(self.book), True)
+
+
 if __name__ == '__main__':
     unittest.main()

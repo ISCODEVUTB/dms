@@ -1,5 +1,5 @@
 import json
-from document import Document
+from logic.classes.document import Document
 from datetime import date
 
 
@@ -13,7 +13,7 @@ class Sell (object):
                  date: date = date.today(),
                  pay_method: str = 'pay_method',
                  total_price: float = 0.1,
-                 items: list = [Document()]) -> object:
+                 items=None) -> object:
         """
         Constructor of the class
         :param id: the id of the Sell
@@ -31,7 +31,10 @@ class Sell (object):
         self.__date = date
         self.__pay_method = pay_method
         self.__total_price = total_price
-        self.__items = items
+        if items is None:
+            self.__items = []
+        else:
+            self.__items = items
 
     @property
     def id(self) -> int:
@@ -128,7 +131,7 @@ class Sell (object):
         """
         self.__items = items
 
-    def __str__(self) -> str:
+    def __str__(self) -> dict:
         """
         String representation of the Sell
         :return: the string representation of the Sell

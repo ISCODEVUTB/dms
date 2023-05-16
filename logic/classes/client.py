@@ -1,5 +1,5 @@
 import json
-from person import Person
+from logic.classes.person import Person
 
 
 class Client (Person):
@@ -28,7 +28,7 @@ class Client (Person):
         """
         super().__init__(id, name, last_name, phone, mail)
 
-    def __str__(self) -> str:
+    def __str__(self) -> dict:
         """
         String representation of the Client
         :return: a string containing the Client
@@ -58,4 +58,5 @@ if __name__ == '__main__':
     client2 = Client(1, 'name', 'last_name', 'phone', 'mail')
     print(json.dumps(client.__str__()))
 
-    print('client1 == client2') if client == client2 else print('client1 != client2')
+    print('client1 == client2') if client == client2 else print(
+        'client1 != client2')

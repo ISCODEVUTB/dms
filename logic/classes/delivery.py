@@ -1,5 +1,5 @@
 import json
-from person import Person
+from logic.classes.person import Person
 from datetime import date
 
 
@@ -88,7 +88,7 @@ class Delivery (object):
         """
         self.__date = date
 
-    def __str__(self) -> str:
+    def __str__(self) -> dict:
         """
         String representation of the Delivery
         :return: the string representation of the Delivery

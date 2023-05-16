@@ -1,9 +1,12 @@
 import json
 from datetime import date
+
+
 class Document(object):
     """
     A class that represents a document
     """
+
     def __init__(self,
                  id: int = 0,
                  author: str = 'author',
@@ -44,7 +47,7 @@ class Document(object):
         :rtype: int
         """
         return self.__id
-    
+
     @id.setter
     def id(self, id: int) -> None:
         """
@@ -63,7 +66,7 @@ class Document(object):
         :rtype: str
         """
         return self.__author
-    
+
     @author.setter
     def author(self, author: str) -> None:
         """
@@ -82,7 +85,7 @@ class Document(object):
         :rtype: str
         """
         return self.__title
-    
+
     @title.setter
     def title(self, title: str) -> None:
         """
@@ -101,7 +104,7 @@ class Document(object):
         :rtype: float
         """
         return self.__price
-    
+
     @price.setter
     def price(self, price: float) -> None:
         """
@@ -120,7 +123,7 @@ class Document(object):
         :rtype: str
         """
         return self.__topic
-    
+
     @topic.setter
     def topic(self, topic: str) -> None:
         """
@@ -139,7 +142,7 @@ class Document(object):
         :rtype: str
         """
         return self.__language
-    
+
     @language.setter
     def language(self, language: str) -> None:
         """
@@ -158,7 +161,7 @@ class Document(object):
         :rtype: date
         """
         return self.__pub_date
-    
+
     @pub_date.setter
     def pub_date(self, pub_date: date) -> None:
         """
@@ -169,7 +172,7 @@ class Document(object):
         """
         self.__pub_date = pub_date
 
-    def __str__(self) -> str:
+    def __str__(self) -> dict:
         """
         String representation of the document
         :return: the string representation of the document
@@ -182,7 +185,7 @@ class Document(object):
                 "topic": self.__topic,
                 "language": self.__language,
                 "pub_date": self.__pub_date.strftime("%Y/%m/%d")}
-    
+
     def __eq__(self, other: object) -> bool:
         """
         Overriding the equality operator
@@ -193,14 +196,15 @@ class Document(object):
         """
         if isinstance(other, Document):
             return self.id == other.id and \
-                   self.author == other.author and \
-                   self.title == other.title and \
-                   self.price == other.price and \
-                   self.topic == other.topic and \
-                   self.language == other.language and \
-                   self.pub_date == other.pub_date
+                self.author == other.author and \
+                self.title == other.title and \
+                self.price == other.price and \
+                self.topic == other.topic and \
+                self.language == other.language and \
+                self.pub_date == other.pub_date
         return False
-    
+
+
 if __name__ == '__main__':
     doc = Document(1, 'author', 'title', 0.1, 'topic', 'lang', date.today())
     assert doc.id == 1
@@ -211,9 +215,10 @@ if __name__ == '__main__':
     assert doc.language == 'lang'
     assert doc.pub_date == date.today()
 
-    doc2 = Document(2, 'author2', 'title2', 0.2, 'topic2', 'lang2', date.today())
+    doc2 = Document(2, 'author2', 'title2', 0.2,
+                    'topic2', 'lang2', date.today())
     doc3 = Document(1, 'author', 'title', 0.1, 'topic', 'lang', date.today())
     print(doc.__str__())
 
-    print("The documents are equal") if doc.__eq__(doc2) else print("The documents are not equal")
-        
+    print("The documents are equal") if doc.__eq__(
+        doc2) else print("The documents are not equal")
