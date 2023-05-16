@@ -46,9 +46,23 @@ class TestEDocument(unittest.TestCase):
     def test_doi(self):
         self.assertEqual(self.doc.doi, "https://doi.org/10.1234")
 
+    def test_setters(self):
+        self.doc.id = 54321
+        self.doc.author = 'Jane Doe'
+        self.doc.title = 'My Awesome Book'
+        self.doc.price = 9.99
+        self.doc.topic = 'Science'
+        self.doc.language = 'spanish'
+        self.doc.pub_date = date.today()
+        self.doc.size = 2.5
+        self.doc.doi = "https://doi.org/10.1234"
+
     def test__str__(self):
         self.assertEqual(self.doc.__str__(), {'id': 123, 'author': "Jane Doe", 'title': "My Awesome Book", 'price': 9.99,
                                               'topic': "Science", 'language': "spanish", 'pub_date': date.today().strftime("%Y/%m/%d"), 'size': 2.5, 'doi': "https://doi.org/10.1234"})
+
+    def test__eq__(self):
+        self.assertEqual(self.doc.__eq__(self.doc), True)
 
 
 if __name__ == '__main__':

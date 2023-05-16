@@ -34,9 +34,22 @@ class TestFDocument(unittest.TestCase):
     def test_publisher(self):
         self.assertEqual(self.doc.publisher, "Tech Pub")
 
+    def test_setters(self):
+        self.doc.id = 1
+        self.doc.author = 'ian'
+        self.doc.title = 'The Art of Programming'
+        self.doc.price = 29.99
+        self.doc.topic = 'Computer Science'
+        self.doc.language = 'English'
+        self.doc.pub_date = date.today()
+        self.doc.publisher = 'Tech Pub'
+
     def test__str__(self):
         self.assertEqual(self.doc.__str__(), {'id': 1, 'author': 'ian', 'title': 'The Art of Programming', 'price': 29.99, 'topic': 'Computer Science',
                                               'language': 'English', 'pub_date': date.today().strftime("%Y/%m/%d"), 'publisher': 'Tech Pub'})
+
+    def test__eq__(self):
+        self.assertEqual(self.doc.__eq__(self.doc), True)
 
 
 if __name__ == '__main__':

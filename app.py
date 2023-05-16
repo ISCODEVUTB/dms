@@ -185,7 +185,15 @@ async def delete(id_document: int, table_name: str):
     """
     Delete a document from a table
     """
-    if table_name == "Books" or "Audiobooks" or "Ebooks" or "Magazines" or "Investigation_books":
+    if table_name == "Books":
+        return bd_object.delete_document(id_document, table_name)
+    elif table_name == "Audiobooks":
+        return bd_object.delete_document(id_document, table_name)
+    elif table_name == "Ebooks":
+        return bd_object.delete_document(id_document, table_name)
+    elif table_name == "Investigation_books":
+        return bd_object.delete_document(id_document, table_name)
+    elif table_name == "Magazines":
         return bd_object.delete_document(id_document, table_name)
     else:
         return "Table not found"

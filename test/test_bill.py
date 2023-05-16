@@ -30,9 +30,19 @@ class TestBill(unittest.TestCase):
     def test_items(self):
         self.assertEqual(self.bill.items, [self.item.__str__()])
 
+    def test_setters(self):
+        self.bill.id = 2
+        self.bill.buyer = "Juan"
+        self.bill.date = date(2021, 5, 3)
+        self.bill.price = 30000
+        self.bill.items = [self.item.__str__()]
+
     def test__str__(self):
         self.assertEqual(self.bill.__str__(), {'id': 1, 'buyer': f"{self.buyer.__str__()}", 'date': date.today(
         ), 'price': 20000, 'items': f"[{self.item.__str__()}]"})
+
+    def test__eq__(self):
+        self.assertEqual(self.bill.__eq__(self.bill), True)
 
 
 if __name__ == '__main__':

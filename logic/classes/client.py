@@ -28,7 +28,7 @@ class Client (Person):
         """
         super().__init__(id, name, last_name, phone, mail)
 
-    def __str__(self) -> str:
+    def __str__(self) -> dict:
         """
         String representation of the Client
         :return: a string containing the Client

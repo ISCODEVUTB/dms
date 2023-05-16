@@ -84,7 +84,7 @@ class Magazine(EDocument):
         """
         self.__pages = pages
 
-    def __str__(self) -> str:
+    def __str__(self) -> dict:
         """
         String representation of the magazine
         :return: the string representation of the magazine

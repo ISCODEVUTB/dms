@@ -28,9 +28,19 @@ class TestSell(unittest.TestCase):
     def test_items(self):
         self.assertEqual(self.sell.items, [self.doc.__str__()])
 
+    def test_setters(self):
+        self.sell.id = 123
+        self.sell.date = date(2023, 5, 3)
+        self.sell.pay_method = 'credit card'
+        self.sell.total_price = 20.5
+        self.sell.items = [self.doc.__str__()]
+
     def test__str__(self):
         self.assertEqual(self.sell.__str__(), {'id': 123, 'date': date(
             2023, 5, 3), 'pay_method': 'credit card', 'total_price': 20.5, 'items': [self.doc.__str__()]})
+
+    def test__eq__(self):
+        self.assertEqual(self.sell.__eq__(self.sell), True)
 
 
 if __name__ == '__main__':

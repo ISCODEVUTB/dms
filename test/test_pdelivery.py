@@ -11,7 +11,7 @@ class TestDelivery(unittest.TestCase):
     myaddress = Address("colombia", "bolivar", "cartagena",
                         "1101", "Horizonte", "mzn3", "house")
     delivery = PDelivery(3, buyer.__str__(), date.today(),
-                         myaddress.__str__(), contact.__str__(), "Documents")
+                         myaddress.__str__(), contact.__str__(), "Company")
 
     def test_instance(self):
         self.assertIsInstance(self.delivery, PDelivery, "Its instance!")
@@ -32,12 +32,20 @@ class TestDelivery(unittest.TestCase):
         self.assertEqual(self.delivery.contact, self.contact.__str__())
 
     def test_company(self):
-        self.assertEqual(self.delivery.company, "Documents")
+        self.assertEqual(self.delivery.company, "Company")
+
+    def test_setters(self):
+        self.delivery.id = 3
+        self.delivery.buyer = self.buyer.__str__()
+        self.delivery.date = date.today()
+        self.delivery.address = self.myaddress.__str__()
+        self.delivery.contact = self.contact.__str__()
+        self.delivery.company = "Company"
 
     def test__str__(self):
         self.assertEqual(self.delivery.__str__(), {'id': 3, 'buyer': self.buyer.__str__(),
                                                    'date': date.today(), 'address': self.myaddress.__str__(), 'contact': self.contact.__str__(),
-                                                   'company': 'Documents'})
+                                                   'company': 'Company'})
 
 
 if __name__ == '__main__':

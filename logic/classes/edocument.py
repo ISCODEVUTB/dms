@@ -81,7 +81,7 @@ class EDocument(Document):
         """
         self.__doi = doi
 
-    def __str__(self) -> str:
+    def __str__(self) -> dict:
         """
         String representation of the class
         :return: the string representation of the class

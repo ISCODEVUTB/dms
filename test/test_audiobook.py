@@ -55,10 +55,26 @@ class TestAudioBook(unittest.TestCase):
         self.assertEqual(
             self.book.synopsis, 'A boy discovers he is a wizard and attends a school of magic.')
 
+    def test_setters(self):
+        self.book.id = 2
+        self.book.author = 'J.K. Rowling'
+        self.book.title = 'Harry Potter'
+        self.book.price = 9.99
+        self.book.topic = 'Fantasy'
+        self.book.language = 'English'
+        self.book.pub_date = date(1997, 6, 26)
+        self.book.size = 100.0
+        self.book.doi = '10.1234/abcd'
+        self.book.duration = 3600
+        self.book.synopsis = 'A boy discovers he is a wizard and attends a school of magic.'
+
     def test__str__(self):
         self.assertEqual(self.book.__str__(), {'id': 1, 'author': "J.K. Rowling", 'title': "Harry Potter",  'price': 9.99, 'topic': "Fantasy",
                                                'language': "English", 'pub_date': date(1997, 6, 26).strftime("%Y/%m/%d"), 'size': 100, 'doi': "10.1234/abcd", 'duration': 3600,
                                                'synopsis': "A boy discovers he is a wizard and attends a school of magic."})
+
+    def test__eq__(self):
+        self.assertEqual(self.book.__eq__(self.book), True)
 
 
 if __name__ == '__main__':

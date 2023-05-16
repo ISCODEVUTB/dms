@@ -94,7 +94,7 @@ class PDelivery (Delivery):
         """
         self.__company = company
 
-    def __str__(self) -> str:
+    def __str__(self) -> dict:
         """
         String representation of the class
         :return: a string representing the class

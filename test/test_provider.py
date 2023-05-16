@@ -38,10 +38,22 @@ class TestProvider(unittest.TestCase):
     def test_inventory(self):
         self.assertEqual(self.provider.inventory, [self.document.__str__()])
 
+    def test_setters(self):
+        self.provider.id = 1
+        self.provider.name = 'John'
+        self.provider.last_name = 'Doe'
+        self.provider.phone = '555-555-5555'
+        self.provider.mail = 'john@example.com'
+        self.provider.address = self.address.__str__()
+        self.provider.inventory = [self.document.__str__()]
+
     def test__str__(self):
         self.assertEqual(self.provider.__str__(), {'id': 1, 'name': 'John', 'last_name': 'Doe', 'phone': '555-555-5555', 'mail': 'john@example.com',
                                                    'address': self.address.__str__(),
                                                    'inventory': [self.document.__str__()]})
+
+    def test__eq__(self):
+        self.assertEqual(self.provider.__eq__(self.provider), True)
 
 
 if __name__ == '__main__':

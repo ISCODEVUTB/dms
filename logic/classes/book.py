@@ -127,7 +127,7 @@ class Book(PDocument):
         """
         self.__presentation = presentation
 
-    def __str__(self) -> str:
+    def __str__(self) -> dict:
         """
         String representation of the book
         :return: the string representation of the book

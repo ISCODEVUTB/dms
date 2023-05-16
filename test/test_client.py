@@ -24,9 +24,19 @@ class TestClient(unittest.TestCase):
     def test_mail(self):
         self.assertEqual(self.client.mail, 'johndoe@example.com')
 
+    def test_setters(self):
+        self.client.id = 1
+        self.client.name = 'John'
+        self.client.last_name = 'Doe'
+        self.client.phone = '123-456-7890'
+        self.client.mail = 'johndoe@example.com'
+
     def test__str__(self):
         self.assertEqual(self.client.__str__(), {
                          'id': 1, 'name': 'John', 'last_name': 'Doe', 'phone': '123-456-7890', 'mail': 'johndoe@example.com'})
+
+    def test__eq__(self):
+        self.assertEqual(self.client.__eq__(self.client), True)
 
 
 if __name__ == '__main__':

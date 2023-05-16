@@ -31,9 +31,21 @@ class TestDocument(unittest.TestCase):
     def test_pub_date(self):
         self.assertEqual(self.document.pub_date, date.today())
 
+    def test_setters(self):
+        self.document.id = 54321
+        self.document.author = 'ian'
+        self.document.title = 'My Document'
+        self.document.price = 10000
+        self.document.topic = 'Science'
+        self.document.language = 'spanish'
+        self.document.pub_date = date.today()
+
     def test__str__(self):
         self.assertEqual(self.document.__str__(), {'id': 12345, 'author': "ian", 'title': "My Document",
                          'price': 10000, 'topic': "Science", 'language': "spanish", 'pub_date': date.today().strftime("%Y/%m/%d")})
+
+    def test__eq__(self):
+        self.assertEqual(self.document.__eq__(self.document), True)
 
 
 if __name__ == '__main__':

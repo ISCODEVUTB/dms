@@ -48,11 +48,28 @@ class TestBook(unittest.TestCase):
     def test_presentation(self):
         self.assertEqual(self.book.presentation, "A great presentation")
 
+    def test_setters(self):
+        self.book.id = 12345
+        self.book.author = "ian"
+        self.book.title = "art"
+        self.book.price = 19.99
+        self.book.topic = "fiction"
+        self.book.language = "english"
+        self.book.pub_date = date.today()
+        self.book.publisher = "norma"
+        self.book.editor = "alba"
+        self.book.pages = 250
+        self.book.synopsis = "A great book"
+        self.book.presentation = "A great presentation"
+
     def test__str__(self):
         self.assertEquals(self.book.__str__(), {'id': 1234, 'author': 'ian', 'title': 'art', 'price': 19.99,
                                                 'topic': 'fiction', 'language': 'english', 'pub_date': date.today().strftime("%Y/%m/%d"),
                                                 'publisher': 'norma', 'editor': 'alba', 'pages': 250,
                                                 'synopsis': 'A great book', 'presentation': 'A great presentation'})
+
+    def test__eq__(self):
+        self.assertEquals(self.book.__eq__(self.book), True)
 
 
 if __name__ == '__main__':

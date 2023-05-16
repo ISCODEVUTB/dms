@@ -86,7 +86,7 @@ class AudioBook(EDocument):
         """
         self.__synopsis = synopsis
 
-    def __str__(self) -> str:
+    def __str__(self) -> dict:
         """
         String representation of the audio book
         :return: the string representation of the audio book

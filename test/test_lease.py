@@ -32,11 +32,21 @@ class TestLease(unittest.TestCase):
     def test_items(self):
         self.assertEqual(self.lease.items, [self.doc.__str__()])
 
-        Lease()
+    def test_setters(self):
+        self.lease.id = 1
+        self.lease.start_date = date.today()
+        self.lease.finish_date = date(
+            date.today().year, date.today().month+1, 20)
+        self.lease.pay_method = "card"
+        self.lease.total_price = 10.0
+        self.lease.items = [self.doc.__str__()]
 
     def test__str__(self):
         self.assertEqual(self.lease.__str__(), {'id': 1, 'start_date': date.today(), 'finish_date': date(date.today().year, date.today().month+1, 20),
                                                 'pay_method': "card", 'total_price': 10.0, 'items': [self.doc.__str__()]})
+
+    def test__eq__(self):
+        self.assertEqual(self.lease.__eq__(self.lease), True)
 
 
 if __name__ == '__main__':

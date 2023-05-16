@@ -47,7 +47,7 @@ class EDelivery (Delivery):
         """
         self.__deliver_mail = deliver_mail
 
-    def __str__(self) -> str:
+    def __str__(self) -> dict:
         """
         String representation of the class
         :return: a string representing the class

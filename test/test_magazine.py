@@ -45,10 +45,26 @@ class TestMagazine(unittest.TestCase):
     def test_pages(self):
         self.assertEqual(self.magazine.pages, 50)
 
+    def test_setters(self):
+        self.magazine.id = 12345
+        self.magazine.author = "ian"
+        self.magazine.title = "forbes"
+        self.magazine.price = 9.99
+        self.magazine.topic = "Fashion"
+        self.magazine.language = "english"
+        self.magazine.pub_date = date.today()
+        self.magazine.size = 10.0
+        self.magazine.doi = "doi123"
+        self.magazine.edition = 2
+        self.magazine.pages = 50
+
     def test__str__(self):
         self.assertEquals(self.magazine.__str__(), {'id': 123, 'author': 'ian', 'title': 'forbes', 'price': 9.99,
                                                     'topic': 'Fashion', 'language': 'english', 'pub_date': date.today().strftime("%Y/%m/%d"),
                                                     'size': 10.0, 'doi': 'doi123', 'edition': 2, 'pages': 50})
+
+    def test__eq__(self):
+        self.assertEqual(self.magazine.__eq__(self.magazine), True)
 
 
 if __name__ == '__main__':

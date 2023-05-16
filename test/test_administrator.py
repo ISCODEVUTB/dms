@@ -25,9 +25,18 @@ class TestAdministrator(unittest.TestCase):
     def test_mail(self):
         self.assertEqual(self.admin.mail, 'montoya@mail.com')
 
+    def test_setters(self):
+        self.admin.name = 'ian'
+        self.admin.last_name = 'montoya'
+        self.admin.phone = '3032846010'
+        self.admin.mail = 'montoya@mail.com'
+
     def test__str__(self):
         self.assertEqual(self.admin.__str__(), {
                          'id': 10, 'name': "ian", 'last_name': "montoya",  'phone': "3032846010", 'mail': "montoya@mail.com"})
+
+    def test__eq__(self):
+        self.assertEqual(self.admin.__eq__(self.admin), True)
 
 
 if __name__ == '__main__':

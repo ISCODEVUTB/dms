@@ -88,7 +88,7 @@ class Delivery (object):
         """
         self.__date = date
 
-    def __str__(self) -> str:
+    def __str__(self) -> dict:
         """
         String representation of the Delivery
         :return: the string representation of the Delivery
