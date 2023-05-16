@@ -122,28 +122,30 @@ class DatabaseController():
         """
         self.connection = sqlite3.connect(DATABASE)
         self.cursor = self.connection.cursor()
-        if table_name == "":
-            self.cursor.execute('SELECT * FROM Books')
-            rows = self.cursor.fetchall()
-            self.cursor.execute('SELECT * FROM Ebooks')
-            rows += self.cursor.fetchall()
-            self.cursor.execute('SELECT * FROM Audiobooks')
-            rows += self.cursor.fetchall()
-            self.cursor.execute('SELECT * FROM Magazines')
-            rows += self.cursor.fetchall()
-            self.cursor.execute('SELECT * FROM Investigation_books')
-            rows += self.cursor.fetchall()
-            print(rows)
-            self.connection.commit()
-            self.connection.close()
-            return rows
-        else:
-            self.cursor.execute(
-                '''SELECT * FROM {}'''.format(table_name))
-            rows = self.cursor.fetchall()
-            self.connection.commit()
-            self.connection.close()
-            return rows
+        try:
+            if table_name == "":
+                self.cursor.execute('SELECT * FROM Books')
+                rows = self.cursor.fetchall()
+                self.cursor.execute('SELECT * FROM Ebooks')
+                rows += self.cursor.fetchall()
+                self.cursor.execute('SELECT * FROM Audiobooks')
+                rows += self.cursor.fetchall()
+                self.cursor.execute('SELECT * FROM Magazines')
+                rows += self.cursor.fetchall()
+                self.cursor.execute('SELECT * FROM Investigation_books')
+                rows += self.cursor.fetchall()
+                self.connection.commit()
+                self.connection.close()
+                return rows
+            else:
+                self.cursor.execute(
+                    '''SELECT * FROM {}'''.format(table_name))
+                rows = self.cursor.fetchall()
+                self.connection.commit()
+                self.connection.close()
+                return rows
+        except sqlite3.Error as error:
+            print("Failed to read data from sqlite table", error)
 
 
 if __name__ == "__main__":
